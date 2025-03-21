@@ -1,0 +1,21 @@
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        int n = nums.length;
+        Set<List<Integer>> set = new HashSet<>(); 
+
+        int totalSubsets = (1 << n); 
+        for (int mask = 0; mask < totalSubsets; mask++) {
+            List<Integer> subset = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                if ((mask & (1 << i)) != 0) { 
+                    subset.add(nums[i]);
+                }
+            }
+            Collections.sort(subset); 
+            set.add(subset);
+        }
+
+        return new ArrayList<>(set);
+        
+    }
+}
